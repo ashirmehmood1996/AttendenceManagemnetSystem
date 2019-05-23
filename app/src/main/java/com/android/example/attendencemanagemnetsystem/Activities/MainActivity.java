@@ -1,4 +1,4 @@
-package com.android.example.attendencemanagemnetsystem;
+package com.android.example.attendencemanagemnetsystem.Activities;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.android.example.attendencemanagemnetsystem.R;
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
