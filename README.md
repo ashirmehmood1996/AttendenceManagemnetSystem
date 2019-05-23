@@ -1,0 +1,3 @@
+# AttendenceManagemnetSystem
+a simple semester project for attendance manageent system
+this  project is under consturction...
