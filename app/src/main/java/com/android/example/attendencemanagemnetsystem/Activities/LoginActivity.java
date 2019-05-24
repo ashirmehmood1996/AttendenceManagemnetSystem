@@ -91,7 +91,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void sendUserToRelevantActiviy() {
-        FirebaseDatabase.getInstance().getReference()
+        FirebaseDatabase.getInstance().getReference().child("users")
                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                 .child("type").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

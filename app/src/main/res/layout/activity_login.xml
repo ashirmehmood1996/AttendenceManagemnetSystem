@@ -12,7 +12,9 @@
         android:id="@+id/et_login_number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="+921234567890" />
+        android:hint="+921234567890"
+        android:imeOptions="actionDone"
+        android:inputType="phone" />
 
     <Button
         android:id="@+id/bt_login_login"

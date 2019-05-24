@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void senToRelevantActivity() {
 
-        FirebaseDatabase.getInstance().getReference()
+        FirebaseDatabase.getInstance().getReference().child("users")
                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                 .child("type").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

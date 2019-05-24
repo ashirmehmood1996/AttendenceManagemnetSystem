@@ -54,7 +54,7 @@ public class RegisterActivity extends AppCompatActivity {
                     Toast.makeText(RegisterActivity.this, "please fill out the fields first", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if (type.equals("admin") || !type.equals("teacher")) {
+                if (type.equals("admin") || type.equals("teacher")) {
                     proceedToRegister();
                 } else {
                     Toast.makeText(RegisterActivity.this, "invalid type", Toast.LENGTH_SHORT).show();
