@@ -1,9 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
     tools:context=".Activities.RegisterActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <EditText
+        android:id="@+id/et_register_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="+921234567890" />
+
+
+    <!--todo    later replace it with a spinner-->
+    <EditText
+        android:id="@+id/et_register_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="admin / teacher" />
+
+    <Button
+        android:id="@+id/bt_register_register"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Register" />
+
+</LinearLayout>

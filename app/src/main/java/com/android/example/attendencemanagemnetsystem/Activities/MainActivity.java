@@ -14,12 +14,15 @@ import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-
 
 
     @Override
@@ -34,14 +37,36 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         if (FirebaseAuth.getInstance().getCurrentUser() == null) {
             sendToLogin();
-        }else {
+        } else {
             senToRelevantActivity();
         }
         super.onStart();
     }
 
     private void senToRelevantActivity() {
-        // TODO: 5/24/2019 check user type and send to relevant activity
+
+        FirebaseDatabase.getInstance().getReference()
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .child("type").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    String type = dataSnapshot.getValue(String.class);
+                    if (type.equals("admin")) {
+                        startActivity(new Intent(MainActivity.this, AdminActivity.class));
+                        finish();
+                    } else {
+                        startActivity(new Intent(MainActivity.this, TeacherActivity.class));
+                        finish();
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     private void sendToLogin() {
@@ -51,31 +76,4 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_menu, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        if (item.getItemId() == R.id.nav_main_logout) {
-            if (FirebaseAuth.getInstance().getCurrentUser() != null) {
-                AuthUI.getInstance()
-                        .signOut(this)
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()) {
-                                    Toast.makeText(MainActivity.this, "logout successfull", Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        });
-            } else {
-                Toast.makeText(this, "already logged out", Toast.LENGTH_SHORT).show();
-            }
-        }
-        return super.onOptionsItemSelected(item);
-    }
 }
