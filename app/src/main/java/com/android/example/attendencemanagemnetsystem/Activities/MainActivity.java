@@ -20,7 +20,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final int RC_LOGIN = 1001;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,29 +34,22 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         if (FirebaseAuth.getInstance().getCurrentUser() == null) {
             sendToLogin();
+        }else {
+            senToRelevantActivity();
         }
         super.onStart();
     }
 
+    private void senToRelevantActivity() {
+        // TODO: 5/24/2019 check user type and send to relevant activity
+    }
+
     private void sendToLogin() {
-        List<AuthUI.IdpConfig> providers = Arrays.asList(new AuthUI.IdpConfig.PhoneBuilder().build());
-        startActivityForResult(AuthUI.getInstance()
-                .createSignInIntentBuilder()
-                .setAvailableProviders(providers).build(), RC_LOGIN);
+        startActivity(new Intent(this, LoginActivity.class));
+        finish();
+
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if (requestCode == RC_LOGIN) {
-            if (resultCode == RESULT_OK) {
-                Toast.makeText(this, "Welcome user ", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(this, "login un successfull", Toast.LENGTH_SHORT).show();
-            }
-
-        }
-        super.onActivityResult(requestCode, resultCode, data);
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
