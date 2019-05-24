@@ -8,6 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.android.example.attendencemanagemnetsystem.R;
@@ -17,11 +19,49 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class AdminActivity extends AppCompatActivity {
+    private Button teachersButton, classesButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
+
+        getSupportActionBar().setTitle("Welcome Admin");
+
+        initFields();
+        attachListeners();
+    }
+
+    private void initFields() {
+        classesButton = findViewById(R.id.bt_admin_classes);
+        teachersButton = findViewById(R.id.bt_admin_teachers);
+    }
+
+    private void attachListeners() {
+        classesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showAvailableClasses();
+
+            }
+        });
+        teachersButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showAvailableTeachersData();
+            }
+        });
+    }
+
+    private void showAvailableClasses() {
+        // TODO: 5/24/2019 show a list of classes if there and also allow options for adding new classes
+        startActivity(new Intent(this, ClassesActivity.class));
+
+    }
+
+    private void showAvailableTeachersData() {
+        // TODO: 5/24/2019 display all teachers from teachers node  in an activity and shif to fragemnt later if time
+        startActivity(new Intent(this, TeachersListActivity.class));
     }
 
 
