@@ -4,4 +4,7 @@
     <item
         android:id="@+id/nav_admin_logout"
         android:title="logout"/>
+    <item
+        android:id="@+id/nav_admin_share_registration_code"
+        android:title="Share registration code"/>
 </menu>
