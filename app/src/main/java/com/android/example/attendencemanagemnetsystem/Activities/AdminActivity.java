@@ -54,13 +54,11 @@ public class AdminActivity extends AppCompatActivity {
     }
 
     private void showAvailableClasses() {
-        // TODO: 5/24/2019 show a list of classes if there and also allow options for adding new classes
         startActivity(new Intent(this, ClassesActivity.class));
 
     }
 
     private void showAvailableTeachersData() {
-        // TODO: 5/24/2019 display all teachers from teachers node  in an activity and shif to fragemnt later if time
         startActivity(new Intent(this, TeachersListActivity.class));
     }
 

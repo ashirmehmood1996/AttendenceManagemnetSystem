@@ -78,8 +78,6 @@ public class LoginActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (requestCode == RC_LOGIN) {
             if (resultCode == RESULT_OK) {
-
-                // TODO: 5/24/2019 check user type and send to relevant acivity
                 sendUserToRelevantActiviy();
                 Toast.makeText(this, "Welcome user ", Toast.LENGTH_SHORT).show();
             } else {
