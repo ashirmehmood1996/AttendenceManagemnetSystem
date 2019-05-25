@@ -48,6 +48,8 @@ public class AddClassActivity extends AppCompatActivity {
                     return;
                 } else {
                     HashMap<String, Object> classMap = new HashMap<>();
+                    classMap.put("title",title);
+                    classMap.put("session",session);
                     FirebaseDatabase.getInstance().getReference()
                             .child("classes").push()
                             .setValue(classMap).addOnCompleteListener(new OnCompleteListener<Void>() {
