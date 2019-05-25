@@ -1,9 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
     tools:context=".Activities.AddClassActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="class title" />
+
+    <EditText
+        android:id="@+id/et_add_class_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="semester 1 (morn)" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="session" />
+
+    <EditText
+        android:id="@+id/et_add_class_session"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="2018-2019" />
+
+    <Button
+        android:id="@+id/bt_add_class_create"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="create new class " />
+
+</LinearLayout>
