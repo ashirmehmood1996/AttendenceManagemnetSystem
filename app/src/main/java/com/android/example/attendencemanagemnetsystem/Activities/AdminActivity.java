@@ -19,7 +19,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class AdminActivity extends AppCompatActivity {
-    private Button teachersButton, classesButton;
+    private Button teachersButton, classesButton, studentsButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +35,7 @@ public class AdminActivity extends AppCompatActivity {
     private void initFields() {
         classesButton = findViewById(R.id.bt_admin_classes);
         teachersButton = findViewById(R.id.bt_admin_teachers);
+        studentsButton = findViewById(R.id.bt_admin_students);
     }
 
     private void attachListeners() {
@@ -49,6 +50,12 @@ public class AdminActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 showAvailableTeachersData();
+            }
+        });
+        studentsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(AdminActivity.this, StudentsListActivty.class));
             }
         });
     }

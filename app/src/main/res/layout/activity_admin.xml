@@ -21,5 +21,11 @@
         android:layout_height="wrap_content"
         android:text="Teachers" />
 
+    <Button
+        android:id="@+id/bt_admin_students"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Students" />
+
 
 </LinearLayout>

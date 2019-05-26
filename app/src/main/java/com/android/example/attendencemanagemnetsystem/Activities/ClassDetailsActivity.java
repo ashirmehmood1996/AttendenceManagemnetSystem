@@ -68,9 +68,10 @@ public class ClassDetailsActivity extends AppCompatActivity implements View.OnCl
         if (requestCode == RC_SELECT_TEACHERS) {
             if (resultCode == RESULT_OK) {
                 ArrayList<TeacherModel> selectedTeachersList = data.getParcelableArrayListExtra("selected_teachers");
-
-                addTeachersToClass(selectedTeachersList);
-                Toast.makeText(this, selectedTeachersList.size() + " number of teachers selected", Toast.LENGTH_SHORT).show();
+                if (selectedTeachersList.size() == 0)
+                    Toast.makeText(this, "No teacher was selected", Toast.LENGTH_SHORT).show();
+                else
+                    addTeachersToClass(selectedTeachersList);
 
             } else {
                 Toast.makeText(this, "teacher selection was cancelled", Toast.LENGTH_SHORT).show();
