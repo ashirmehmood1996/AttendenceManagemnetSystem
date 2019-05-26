@@ -18,7 +18,8 @@
         android:id="@+id/et_add_class_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="semester 1 (morn)" />
+        android:hint="semester 1 (morn)"
+        android:imeOptions="actionNext" />
 
     <TextView
         android:layout_width="match_parent"
@@ -29,7 +30,8 @@
         android:id="@+id/et_add_class_session"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="2018-2019" />
+        android:hint="2018-2019"
+        android:imeOptions="actionDone" />
 
     <Button
         android:id="@+id/bt_add_class_create"

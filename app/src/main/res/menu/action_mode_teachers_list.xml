@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/nav_teachers_action_mode_select_all"
+        android:icon="@drawable/ic_select_all_black_24dp"
+        android:orderInCategory="2"
+        android:title="search"
+        app:showAsAction="ifRoom|ifRoom" />
+
+    <item
+        android:id="@+id/nav_teachers_action_mode_search"
+        android:icon="@drawable/ic_search_black_24dp"
+        android:orderInCategory="1"
+        android:title="search"
+        app:actionViewClass="android.support.v7.widget.SearchView"
+        app:showAsAction="always" />
+
+</menu>

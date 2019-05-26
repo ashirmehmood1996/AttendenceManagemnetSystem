@@ -1,25 +1,31 @@
 package com.android.example.attendencemanagemnetsystem.Adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.android.example.attendencemanagemnetsystem.Interfaces.ClassItemCallbacks;
+import com.android.example.attendencemanagemnetsystem.Models.ClassModel;
 import com.android.example.attendencemanagemnetsystem.R;
 
 
 import java.util.ArrayList;
 
 public class ClassesAdapter extends RecyclerView.Adapter<ClassesAdapter.ClassesHolder> {
-    private ArrayList<String> classesList;
+    private ArrayList<ClassModel> classesList;
     private Context context;
+    private ClassItemCallbacks classItemCallbacks;
 
-    public ClassesAdapter(ArrayList<String> classesList, Context context) {
+    public ClassesAdapter(ArrayList<ClassModel> classesList, Activity activity) {
         this.classesList = classesList;
-        this.context = context;
+        this.context = activity;
+        this.classItemCallbacks = (ClassItemCallbacks) activity;
 
     }
 
@@ -30,9 +36,19 @@ public class ClassesAdapter extends RecyclerView.Adapter<ClassesAdapter.ClassesH
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ClassesHolder classesHolder, int i) {
-        String className = classesList.get(i);
-        classesHolder.nameTextView.setText(className);
+    public void onBindViewHolder(@NonNull ClassesHolder classesHolder, final int i) {
+        ClassModel currentClass = classesList.get(i);
+        String title = currentClass.getTitle();
+        String session = currentClass.getSession();
+        String classId = currentClass.getClassId();
+        classesHolder.nameTextView.setText(title + " ( " + session + " )");
+
+        classesHolder.mainContainerLinearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                classItemCallbacks.onCLassItemClick(i);
+            }
+        });
 
     }
 
@@ -43,10 +59,12 @@ public class ClassesAdapter extends RecyclerView.Adapter<ClassesAdapter.ClassesH
 
     class ClassesHolder extends RecyclerView.ViewHolder {
         TextView nameTextView;
+        LinearLayout mainContainerLinearLayout;
 
         public ClassesHolder(@NonNull View itemView) {
             super(itemView);
             nameTextView = itemView.findViewById(R.id.tv_classes_li_name);
+            mainContainerLinearLayout = itemView.findViewById(R.id.ll_classess_li_main_container);
         }
     }
 }

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".Activities.ClassDetailsActivity">
+<!--todo     wire them up in the java class and also add osme logic of adding teachers and students  after that move to teachers side please comlete today -->
+    <TextView
+        android:id="@+id/tv_class_item_details_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="title"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tv_class_item_details_session"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="title"
+        android:textSize="18sp" />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="teachers list"
+        android:textColor="#000000"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tv_class_item_details_teachers_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="std1     roll # 14   Ashirmehmood \nstd1     roll # 14   Ashirmehmood" />
+
+    <Button
+        android:id="@+id/bt_class_item_details_add_teacher"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="add teacher" />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Students list"
+        android:textColor="#000000"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tv_class_item_details_students_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="std1     roll # 14   Ashirmehmood \nstd1     roll # 14   Ashirmehmood" />
+
+    <Button
+        android:id="@+id/bt_class_item_details_add_student"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="add Student" />
+
+</LinearLayout>
