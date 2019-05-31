@@ -1,21 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ll_std_list_li_container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/tv_std_list_li_name"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        tools:text="firesname lastname " />
+        android:layout_weight="1"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tv_std_list_li_roll_num"
-        android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/tv_std_list_li_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="firesname lastname " />
+
+        <TextView
+            android:id="@+id/tv_std_list_li_roll_num"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="roll number 12" />
+    </LinearLayout>
+
+    <CheckBox
+        android:id="@+id/cb_std_list_li"
+        android:clickable="false"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="roll number 12" />
+        android:layout_gravity="center" />
 
 
 </LinearLayout>

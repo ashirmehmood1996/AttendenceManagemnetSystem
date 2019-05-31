@@ -15,7 +15,7 @@
         <activity android:name=".Activities.ClassDetailsActivity" />
         <activity android:name=".Activities.AddClassActivity" />
         <activity android:name=".Activities.TeachersListActivity" />
-        <activity android:name=".Activities.ClassesActivity" />
+        <activity android:name=".Activities.ClassesListActivity" />
         <activity android:name=".Activities.AdminActivity" />
         <activity android:name=".Activities.TeacherActivity" />
         <activity android:name=".Activities.RegisterActivity" />

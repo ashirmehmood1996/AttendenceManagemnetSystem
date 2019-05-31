@@ -14,6 +14,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.android.example.attendencemanagemnetsystem.Adapters.TeachersListAdapter;
 import com.android.example.attendencemanagemnetsystem.Interfaces.TeacherItemCallbacks;
@@ -25,6 +26,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+import java.util.function.ToDoubleBiFunction;
 
 public class TeachersListActivity extends AppCompatActivity implements ActionMode.Callback, TeacherItemCallbacks {
     private RecyclerView recyclerView;
@@ -116,6 +118,8 @@ public class TeachersListActivity extends AppCompatActivity implements ActionMod
     public boolean onCreateActionMode(ActionMode mode, final Menu menu) {
         MenuInflater menuInflater = mode.getMenuInflater();
         menuInflater.inflate(R.menu.action_mode_teachers_list, menu);
+
+
         final MenuItem searchMenuItem = menu.findItem(R.id.nav_teachers_action_mode_search);
 //        searchView = (SearchView) searchMenuItem.getActionView();
 //        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -177,6 +181,9 @@ public class TeachersListActivity extends AppCompatActivity implements ActionMod
 
                 teachersListAdapter.notifyDataSetChanged();
                 break;
+            case  R.id.nav_teachers_action_mode_search:
+                Toast.makeText(this, "implement later", Toast.LENGTH_SHORT).show();
+                break;
         }
         return false;
     }
@@ -205,7 +212,7 @@ public class TeachersListActivity extends AppCompatActivity implements ActionMod
 
     @Override
     public void onTeacherClciked(int position) {
-        TeacherModel teacherModel = teachersArrayList.get(0);
+        TeacherModel teacherModel = teachersArrayList.get(position);
 
         if (teacherModel.isSelected()) {
             totalSelectedCount--;
@@ -226,5 +233,12 @@ public class TeachersListActivity extends AppCompatActivity implements ActionMod
         if (mActionMode != null)
 
             mActionMode.setTitle(totalSelectedCount + " Selected");
+    }
+
+    @Override
+    public void onActionModeFinished(ActionMode mode) {
+
+        super.onActionModeFinished(mode);
+        onBackPressed(); //// TODO: 5/31/2019  late handle it more professionaly
     }
 }

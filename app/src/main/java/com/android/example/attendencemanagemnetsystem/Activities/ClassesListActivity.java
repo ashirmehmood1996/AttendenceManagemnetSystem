@@ -21,7 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
-public class ClassesActivity extends AppCompatActivity implements ClassItemCallbacks {
+public class ClassesListActivity extends AppCompatActivity implements ClassItemCallbacks {
     private RecyclerView recyclerView;
     private ArrayList<ClassModel> classesArrayList;
     private ClassesAdapter classesAdapter;
@@ -56,7 +56,7 @@ public class ClassesActivity extends AppCompatActivity implements ClassItemCallb
         addCalssFloatingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(ClassesActivity.this, AddClassActivity.class));
+                startActivity(new Intent(ClassesListActivity.this, AddClassActivity.class));
             }
         });
     }

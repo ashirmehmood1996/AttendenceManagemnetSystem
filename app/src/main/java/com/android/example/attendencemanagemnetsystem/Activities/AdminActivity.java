@@ -61,7 +61,7 @@ public class AdminActivity extends AppCompatActivity {
     }
 
     private void showAvailableClasses() {
-        startActivity(new Intent(this, ClassesActivity.class));
+        startActivity(new Intent(this, ClassesListActivity.class));
 
     }
 

@@ -3,14 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:padding="16dp"
     android:layout_height="match_parent"
+    android:padding="16dp"
     tools:context=".Activities.StudentsListActivty">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_std_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_marginBottom="56dp"/>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_std_list_add_new"
@@ -20,6 +21,13 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
         android:src="@drawable/ic_add_white_24dp" />
+
+    <Button
+        android:layout_alignParentBottom="true"
+        android:id="@+id/bt_std_list_done"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="done" />
 
 
 </RelativeLayout>
