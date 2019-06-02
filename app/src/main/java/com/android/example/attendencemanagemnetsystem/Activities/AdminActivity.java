@@ -62,7 +62,7 @@ public class AdminActivity extends AppCompatActivity {
         attendenceHistoryButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(AdminActivity.this, AttendenceActivity.class));
+                startActivity(new Intent(AdminActivity.this, AttendanceHistoryActivity.class));
             }
         });
     }

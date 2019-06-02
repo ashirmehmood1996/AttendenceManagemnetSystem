@@ -32,7 +32,7 @@
         android:id="@+id/bt_admin_attendence_history"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Students" />
+        android:text="Attendance history" />
 
 
 </LinearLayout>
