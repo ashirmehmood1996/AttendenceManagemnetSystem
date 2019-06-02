@@ -4,10 +4,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".Activities.TeacherActivity">
 
+
     <TextView
+        android:id="@+id/tv_teacher_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Teacher welcome" />
+        android:padding="16dp"
+        android:textSize="18sp"
+        tools:text="FRI, MAY 31, 2019" />
+
+    <Spinner
+        android:id="@+id/sp_teacher_pick_class"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp" />
+    <Button
+        android:id="@+id/bt_teacher_take_attendence"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:enabled="false"
+        android:text="take attendence"/>
+
 </LinearLayout>

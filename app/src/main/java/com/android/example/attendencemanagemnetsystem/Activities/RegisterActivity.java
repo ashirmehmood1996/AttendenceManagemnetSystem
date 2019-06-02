@@ -6,13 +6,15 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.android.example.attendencemanagemnetsystem.R;
 import com.firebase.ui.auth.AuthUI;
-import com.firebase.ui.auth.FirebaseUiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -24,8 +26,9 @@ import java.util.List;
 
 public class RegisterActivity extends AppCompatActivity {
     private static final int RC_REGISTER = 101;
-    private EditText numberEditText, typeEditText;
+    private EditText numberEditText, codeEditText;
     private Button registerButton;
+    Spinner typeSpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +43,32 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void initFields() {
         numberEditText = findViewById(R.id.et_register_number);
-        typeEditText = findViewById(R.id.et_register_type);
+        codeEditText = findViewById(R.id.et_register_code);
         registerButton = findViewById(R.id.bt_register_register);
+        typeSpinner = findViewById(R.id.sp_register_type);
+        //setSpinner
+        setSpinner();
+    }
+
+    private void setSpinner() {
+        ArrayAdapter typeSpinnerAdapter = ArrayAdapter.createFromResource(this, R.array.user_type, R.layout.support_simple_spinner_dropdown_item);
+        typeSpinner.setAdapter(typeSpinnerAdapter);
+        if (typeSpinner.getSelectedItemPosition() == 0) codeEditText.setVisibility(View.GONE);
+        typeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (position == 0) {//then its admin
+                    codeEditText.setVisibility(View.GONE);
+                } else if (position == 1) {//its teacher
+                    codeEditText.setVisibility(View.VISIBLE);
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
     }
 
     private void attachListeners() {
@@ -49,7 +76,12 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String numebr = numberEditText.getText().toString();
-                String type = typeEditText.getText().toString();
+                String type = "";
+                if (typeSpinner.getSelectedItemPosition() == 0) {
+                    type = "admin";
+                } else {
+                    type = "teacher";
+                }
                 if (numebr.isEmpty() || type.isEmpty()) {
                     Toast.makeText(RegisterActivity.this, "please fill out the fields first", Toast.LENGTH_SHORT).show();
                     return;
@@ -75,10 +107,7 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (requestCode == RC_REGISTER) {
             if (resultCode == RESULT_OK) {
-
                 updateDatabaseAndSendToReleventActivity();
-                // TODO: 5/24/2019 check user type and send to relevant acivity
-                Toast.makeText(this, "Welcome user ", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(this, "login unsuccessfull", Toast.LENGTH_SHORT).show();
             }
@@ -88,8 +117,17 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void updateDatabaseAndSendToReleventActivity() {
+
         HashMap<String, Object> userMap = new HashMap<>();
-        userMap.put("type", typeEditText.getText().toString());
+        final String type;
+        if (typeSpinner.getSelectedItemPosition() == 0) {
+            type = "admin";
+        } else {
+            type = "teacher";
+            userMap.put("admin_id",codeEditText.getText().toString());// TODO: 5/31/2019 later check that if admin id exists or not
+        }
+        userMap.put("type", type);
+
         userMap.put("number", numberEditText.getText().toString());
         FirebaseDatabase.getInstance().getReference().child("users")
                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
@@ -97,7 +135,7 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
-                    sendToRelevantActivity();
+                    sendToRelevantActivity(type);
                 } else {
                     Toast.makeText(RegisterActivity.this, "unable to register please try again", Toast.LENGTH_SHORT).show();
                 }
@@ -105,8 +143,8 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
-    private void sendToRelevantActivity() {
-        if (typeEditText.getText().toString().equals("admin")) {
+    private void sendToRelevantActivity(String type) {
+        if (type.equals("admin")) {
             startActivity(new Intent(this, AdminActivity.class));
             finish();
         } else {

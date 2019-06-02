@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Attendence Managemnet System</string>
+    <string-array name="user_type">
+        <item>admin</item>
+        <item>teacher</item>
+    </string-array>
 </resources>

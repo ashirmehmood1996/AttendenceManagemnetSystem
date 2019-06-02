@@ -18,11 +18,18 @@
 
 
     <!--todo    later replace it with a spinner-->
-    <EditText
-        android:id="@+id/et_register_type"
+    <Spinner
+        android:id="@+id/sp_register_type"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="admin / teacher"
+        android:padding="16dp"
+        android:spinnerMode="dropdown" />
+
+    <EditText
+        android:id="@+id/et_register_code"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="e.g. kajshd89aysdjh139ejqd"
         android:imeOptions="actionDone"
         android:inputType="text" />
 

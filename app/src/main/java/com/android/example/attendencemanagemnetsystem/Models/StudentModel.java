@@ -11,6 +11,7 @@ public class StudentModel implements Parcelable {
 
 
 
+
     public StudentModel(String studentId, String name, String rollNumber) {
         this.studentId = studentId;
         this.name = name;
