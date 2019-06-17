@@ -4,35 +4,92 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#efefef"
     android:gravity="center"
     android:orientation="vertical"
-
+    android:padding="8dp"
     tools:context=".Activities.AdminActivity">
 
-    <Button
-        android:id="@+id/bt_admin_classes"
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Classes" />
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text=" admin panel" />
 
-    <Button
-        android:id="@+id/bt_admin_teachers"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Teachers" />
+        android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/bt_admin_students"
+        <Button
+            android:id="@+id/bt_admin_classes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/bt_generel_background"
+            android:drawableTop="@drawable/ic_list_black_24dp"
+            android:drawablePadding="8dp"
+            android:paddingTop="50dp"
+            android:paddingBottom="50dp"
+            android:text="Classes"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/bt_admin_teachers"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/bt_generel_background"
+            android:drawableTop="@drawable/ic_account_box_black_24dp"
+            android:drawablePadding="8dp"
+            android:paddingTop="50dp"
+            android:paddingBottom="50dp"
+            android:text="Teachers"
+
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Students" />
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/bt_admin_students"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/bt_generel_background"
+            android:drawableTop="@drawable/ic_people_black_24dp"
+            android:drawablePadding="8dp"
+            android:paddingTop="50dp"
+            android:paddingBottom="50dp"
+            android:text="Students"
+
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/bt_admin_attendence_history"
+            android:layout_width="0dp"
+
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/bt_generel_background"
+            android:drawableTop="@drawable/ic_history_black_24dp"
+            android:drawablePadding="8dp"
+            android:paddingTop="50dp"
+            android:paddingBottom="50dp"
+            android:text="history"
+            android:textSize="20sp" />
 
 
-    <Button
-        android:id="@+id/bt_admin_attendence_history"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Attendance history" />
+    </LinearLayout>
 
 
 </LinearLayout>

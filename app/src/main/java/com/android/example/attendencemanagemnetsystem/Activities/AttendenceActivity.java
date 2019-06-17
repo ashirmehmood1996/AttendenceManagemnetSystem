@@ -171,8 +171,10 @@ public class AttendenceActivity extends AppCompatActivity implements StudentItem
 
 
         //// TODO: 6/2/2019  later make it dynamic and each organization has uts record separate from others
+        Calendar calendar= Calendar.getInstance();
+        setTimetoStartOfDay(calendar);//saving time in date only string to be able to retrive easily
         FirebaseDatabase.getInstance().getReference().child("attendances")
-                .child(classModel.getClassId()).child(Calendar.getInstance().getTimeInMillis() + "").setValue(attendanceMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                .child(classModel.getClassId()).child(calendar.getTimeInMillis() + "").setValue(attendanceMap).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 Toast.makeText(AttendenceActivity.this, "successfully added to the databse", Toast.LENGTH_SHORT).show();
@@ -180,6 +182,12 @@ public class AttendenceActivity extends AppCompatActivity implements StudentItem
             }
         });
 
+    }
+    private void setTimetoStartOfDay(Calendar calendar) {
+        calendar.set(Calendar.HOUR_OF_DAY,0);
+        calendar.set(Calendar.MINUTE,0);
+        calendar.set(Calendar.SECOND,0);
+        calendar.set(Calendar.MILLISECOND,0);
     }
 
     @Override
