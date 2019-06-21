@@ -25,6 +25,8 @@ public class AddClassActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_class);
 
+        getSupportActionBar().setTitle("Add Class");
+
         initFields();
         attachListeners();
 

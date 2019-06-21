@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -27,13 +28,15 @@ import java.util.List;
 public class RegisterActivity extends AppCompatActivity {
     private static final int RC_REGISTER = 101;
     private EditText numberEditText, codeEditText;
+    private LinearLayout registerationCodeContainerLinearLayout;
     private Button registerButton;
-    Spinner typeSpinner;
+    private Spinner typeSpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        getSupportActionBar().setTitle("Register..");
 
         initFields();
 
@@ -43,6 +46,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void initFields() {
         numberEditText = findViewById(R.id.et_register_number);
+        registerationCodeContainerLinearLayout=findViewById(R.id.ll_register_code_container);
         codeEditText = findViewById(R.id.et_register_code);
         registerButton = findViewById(R.id.bt_register_register);
         typeSpinner = findViewById(R.id.sp_register_type);
@@ -53,14 +57,14 @@ public class RegisterActivity extends AppCompatActivity {
     private void setSpinner() {
         ArrayAdapter typeSpinnerAdapter = ArrayAdapter.createFromResource(this, R.array.user_type, R.layout.support_simple_spinner_dropdown_item);
         typeSpinner.setAdapter(typeSpinnerAdapter);
-        if (typeSpinner.getSelectedItemPosition() == 0) codeEditText.setVisibility(View.GONE);
+        if (typeSpinner.getSelectedItemPosition() == 0) registerationCodeContainerLinearLayout.setVisibility(View.GONE);
         typeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (position == 0) {//then its admin
-                    codeEditText.setVisibility(View.GONE);
+                    registerationCodeContainerLinearLayout.setVisibility(View.GONE);
                 } else if (position == 1) {//its teacher
-                    codeEditText.setVisibility(View.VISIBLE);
+                    registerationCodeContainerLinearLayout.setVisibility(View.VISIBLE);
                 }
             }
             @Override

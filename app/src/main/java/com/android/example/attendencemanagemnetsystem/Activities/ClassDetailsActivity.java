@@ -36,6 +36,8 @@ public class ClassDetailsActivity extends AppCompatActivity implements View.OnCl
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_class_details);
 
+        getSupportActionBar().setTitle("Class Details");
+
         initFields();
         attachListeners();
         setDataTofields(getIntent());
@@ -162,9 +164,11 @@ public class ClassDetailsActivity extends AppCompatActivity implements View.OnCl
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
-                    String teachers = "";
+                    long total = dataSnapshot.getChildrenCount();
+                    String teachers = "total teachers : " + total+"\n";
                     for (DataSnapshot teacherSnap : dataSnapshot.getChildren()) {
                         teachers = teachers + "\n" + teacherSnap.getValue(String.class);
+
                     }
                     teachersListTextView.setText(teachers);
                 }
@@ -184,7 +188,8 @@ public class ClassDetailsActivity extends AppCompatActivity implements View.OnCl
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
-                    String students = "";
+                    long total = dataSnapshot.getChildrenCount();
+                    String students = "total Students : " + total+"\n";
                     for (DataSnapshot teacherSnap : dataSnapshot.getChildren()) {
                         students = students + "\n" + teacherSnap.getValue(String.class);
                     }

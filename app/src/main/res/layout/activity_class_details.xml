@@ -4,62 +4,123 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
+    android:background="#e0e0e0"
     android:orientation="vertical"
     android:padding="16dp"
     tools:context=".Activities.ClassDetailsActivity">
-<!--todo     wire them up in the java class and also add osme logic of adding teachers and students  after that move to teachers side please comlete today -->
+
     <TextView
         android:id="@+id/tv_class_item_details_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:text="title"
-        android:textSize="18sp" />
+        android:textColor="@color/textColorConversationListItemTitle"
+        android:textSize="22sp" />
+
 
     <TextView
         android:id="@+id/tv_class_item_details_session"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:text="session"
         android:textSize="18sp" />
 
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="teachers list"
-        android:textColor="#000000"
-        android:textSize="18sp" />
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_weight="1"
+        android:background="@drawable/bg_edit_text_round"
+        android:orientation="vertical"
+        android:padding="8dp">
 
-    <TextView
-        android:id="@+id/tv_class_item_details_teachers_list"
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="teachers list"
+            android:textColor="#000000"
+            android:textSize="18sp" />
+        <!--todo    test when it overflows-->
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/tv_class_item_details_teachers_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="5dp"
+                tools:text="std1     roll # 14   Ashirmehmood \nstd1     roll # 14   Ashirmehmood" />
+        </ScrollView>
+
+        <Button
+            android:id="@+id/bt_class_item_details_add_teacher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:background="@drawable/bg_button_solid"
+            android:drawableLeft="@drawable/ic_add_white_24dp"
+            android:drawablePadding="20dp"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp"
+            android:text="add new teacher"
+            android:textColor="#ffffff" />
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:text="std1     roll # 14   Ashirmehmood \nstd1     roll # 14   Ashirmehmood" />
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_weight="1"
+        android:background="@drawable/bg_edit_text_round"
+        android:orientation="vertical"
+        android:padding="8dp">
 
-    <Button
-        android:id="@+id/bt_class_item_details_add_teacher"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="add teacher" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="Students list"
+            android:textColor="#000000"
+            android:textSize="18sp" />
 
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Students list"
-        android:textColor="#000000"
-        android:textSize="18sp" />
+            <TextView
+                android:id="@+id/tv_class_item_details_students_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                tools:text="std1     roll # 14   Ashirmehmood \nstd1     roll # 14   Ashirmehmood" />
+        </ScrollView>
 
-    <TextView
-        android:id="@+id/tv_class_item_details_students_list"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:text="std1     roll # 14   Ashirmehmood \nstd1     roll # 14   Ashirmehmood" />
-
-    <Button
-        android:id="@+id/bt_class_item_details_add_student"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="add Student" />
+        <Button
+            android:id="@+id/bt_class_item_details_add_student"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:background="@drawable/bg_button_solid"
+            android:drawableLeft="@drawable/ic_add_white_24dp"
+            android:drawablePadding="20dp"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp"
+            android:text="add new Student"
+            android:textColor="#ffffff" />
+    </LinearLayout>
 
 </LinearLayout>

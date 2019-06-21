@@ -1,31 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".Activities.TeacherActivity">
+    android:background="#eaeaea"
+    android:padding="16dp">
 
-
-    <TextView
-        android:id="@+id/tv_teacher_date"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@drawable/bg_containers"
+        android:orientation="vertical"
         android:padding="16dp"
-        android:textSize="18sp"
-        tools:text="FRI, MAY 31, 2019" />
+        tools:context=".Activities.TeacherActivity">
 
-    <Spinner
-        android:id="@+id/sp_teacher_pick_class"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="16dp" />
-    <Button
-        android:id="@+id/bt_teacher_take_attendence"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:enabled="false"
-        android:text="take attendence"/>
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/tv_teacher_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="16dp"
+            android:textColor="@color/textColorConversationListItemTitle"
+            android:textSize="18sp"
+            tools:text="FRI, MAY 31, 2019" />
+
+        <Spinner
+            android:id="@+id/sp_teacher_pick_class"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:padding="16dp" />
+
+        <Button
+            android:id="@+id/bt_teacher_take_attendence"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:background="@drawable/bg_button_solid"
+            android:enabled="false"
+            android:text="take attendence"
+            android:textColor="#ffffff" />
+
+    </LinearLayout>
+</RelativeLayout>

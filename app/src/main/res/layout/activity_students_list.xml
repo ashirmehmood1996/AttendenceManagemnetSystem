@@ -27,6 +27,10 @@
         android:id="@+id/bt_std_list_done"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/bg_button_solid"
+        android:layout_margin="16dp"
+        android:textColor="#ffffff"
+        android:visibility="gone"
         android:text="done" />
 
 

@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -41,14 +42,16 @@ public class ClassesAdapter extends RecyclerView.Adapter<ClassesAdapter.ClassesH
         String title = currentClass.getTitle();
         String session = currentClass.getSession();
         String classId = currentClass.getClassId();
-        classesHolder.nameTextView.setText(title + " ( " + session + " )");
+        classesHolder.nameButton.setText(title + " ( " + session + " )");
 
-        classesHolder.mainContainerLinearLayout.setOnClickListener(new View.OnClickListener() {
+        classesHolder.nameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 classItemCallbacks.onCLassItemClick(i);
             }
         });
+
 
     }
 
@@ -58,12 +61,12 @@ public class ClassesAdapter extends RecyclerView.Adapter<ClassesAdapter.ClassesH
     }
 
     class ClassesHolder extends RecyclerView.ViewHolder {
-        TextView nameTextView;
+        Button nameButton;
         LinearLayout mainContainerLinearLayout;
 
         public ClassesHolder(@NonNull View itemView) {
             super(itemView);
-            nameTextView = itemView.findViewById(R.id.tv_classes_li_name);
+            nameButton = itemView.findViewById(R.id.bt_classes_li_name);
             mainContainerLinearLayout = itemView.findViewById(R.id.ll_classess_li_main_container);
         }
     }

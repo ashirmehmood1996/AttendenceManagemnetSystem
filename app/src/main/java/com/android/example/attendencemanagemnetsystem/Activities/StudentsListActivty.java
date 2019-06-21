@@ -52,12 +52,15 @@ public class StudentsListActivty extends AppCompatActivity implements ActionMode
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_students_list_activty);
+        setContentView(R.layout.activity_students_list);
+
+        getSupportActionBar().setTitle("Students");
 
         initFields();
 
         if (getIntent().hasExtra("select")) {
             addStdFloatingButton.hide();
+            doneSelectionButon.setVisibility(View.VISIBLE);
             prepareActionMode();
             doneSelectionButon.setOnClickListener(new View.OnClickListener() {
                 @Override

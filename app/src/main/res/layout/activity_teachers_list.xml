@@ -17,7 +17,11 @@
         android:id="@+id/bt_teachers_list_done"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/bg_button_solid"
+        android:layout_margin="16dp"
+        android:textColor="#ffffff"
         android:text="done"
-        android:visibility="gone"/>
+        android:visibility="gone"
+        />
 
 </LinearLayout>

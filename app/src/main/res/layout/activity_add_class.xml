@@ -1,42 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical"
-    tools:context=".Activities.AddClassActivity">
+    android:background="#e0e0e0"
+    android:padding="16dp">
 
-    <TextView
-
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="class title" />
+        android:layout_centerInParent="true"
+        android:background="@drawable/bg_containers"
+        android:orientation="vertical"
 
-    <EditText
-        android:id="@+id/et_add_class_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="semester 1 (morn)"
-        android:imeOptions="actionNext" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="session" />
+        android:padding="16dp"
+        tools:context=".Activities.AddClassActivity">
 
-    <EditText
-        android:id="@+id/et_add_class_session"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="2018-2019"
-        android:imeOptions="actionDone" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="10dp"
+            android:paddingBottom="20dp">
 
-    <Button
-        android:id="@+id/bt_add_class_create"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="create new class " />
+            <TextView
 
-</LinearLayout>
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="class title"
+                android:textColor="@color/textColorConversationListItemTitle" />
+
+            <EditText
+                android:id="@+id/et_add_class_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_edit_text_round"
+                android:hint="semester 1 (morn)"
+                android:imeOptions="actionNext"
+                android:padding="16dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="10dp"
+            android:paddingBottom="20dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="session"
+                android:textColor="@color/textColorConversationListItemTitle" />
+
+            <EditText
+                android:id="@+id/et_add_class_session"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_edit_text_round"
+                android:hint="2018-2019"
+                android:imeOptions="actionDone"
+                android:padding="16dp" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/bt_add_class_create"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:background="@drawable/bg_button_solid"
+            android:text="create new class "
+            android:textColor="#ffffff" />
+
+    </LinearLayout>
+</RelativeLayout>

@@ -4,32 +4,50 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#efefef"
     android:orientation="vertical"
     android:padding="16dp"
     tools:context=".Activities.AttendanceHistoryActivity">
-
-    <Spinner
-        android:id="@+id/sp_attendance_history_class"
+    <!--todo    later put the attedence sheet in a separate fragment-->
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp" />
+        android:layout_margin="4dp"
+        android:background="@drawable/bg_edit_text_round"
+        >
+
+        <Spinner
+            android:id="@+id/sp_attendance_history_class"
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+
+            />
+    </FrameLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="4dp"
         android:orientation="horizontal">
 
         <TextView
             android:id="@+id/tv_attendance_history_date_holder"
             android:layout_width="0dp"
+
             android:layout_height="wrap_content"
+            android:layout_marginRight="8dp"
             android:layout_weight="1"
+            android:background="@drawable/bg_edit_text_round"
+            android:padding="16dp"
             android:text="please sleect the date" />
 
         <Button
             android:id="@+id/bt_attendance_history_pick_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/bg_button_stroked"
+            android:padding="16dp"
             android:text="pick date" />
 
     </LinearLayout>
@@ -38,16 +56,19 @@
         android:id="@+id/bt_attendance_history_display_attendence"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/bg_button_stroked"
         android:text="display attendence" />
 
     <TableLayout
         android:id="@+id/tl_attendance_history"
-
         android:layout_width="match_parent"
+
         android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+
         android:layout_weight="1"
-        android:background="#e0e0e0"
-        android:elevation="8dp">
+        android:background="@drawable/bg_edit_text_round">
 
         <TableRow
             android:layout_width="match_parent"
@@ -60,8 +81,9 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
                 android:layout_weight=".4"
-                android:background="#ffffff"
+                android:background="@drawable/bg_edit_text_round"
                 android:padding="2dp"
+
                 android:text="roll #"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -71,7 +93,8 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
                 android:layout_weight="1"
-                android:background="#ffffff"
+                android:background="@drawable/bg_edit_text_round"
+
                 android:padding="2dp"
                 android:text="Name"
                 android:textSize="20sp"
@@ -82,7 +105,8 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
                 android:layout_weight=".6"
-                android:background="#ffffff"
+                android:background="@drawable/bg_edit_text_round"
+
                 android:padding="2dp"
                 android:text="status"
                 android:textSize="20sp"

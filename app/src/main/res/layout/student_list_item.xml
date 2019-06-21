@@ -1,36 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/ll_std_list_li_container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:clickable="true"
+    android:focusable="true"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp">
+
+    <View
+        android:id="@+id/v_history_list_item_divider"
+        android:layout_width="match_parent"
+        android:layout_height=".3dp"
+        android:layout_below="@id/ll_std_list_li_container"
+        android:layout_marginStart="82dp"
+        android:layout_marginLeft="82dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@color/textColorConversationListItemDetail" />
 
     <LinearLayout
-        android:layout_width="0dp"
+        android:id="@+id/ll_std_list_li_container"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/tv_std_list_li_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:text="firesname lastname " />
+        android:clickable="true"
+        android:focusable="true">
 
         <TextView
             android:id="@+id/tv_std_list_li_roll_num"
-            android:layout_width="match_parent"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/magnitude_circle"
+            android:fontFamily="sans-serif-condensed-light"
+            android:gravity="center"
+            android:maxLength="3"
+            android:text="A"
+            android:textColor="@android:color/white"
+            android:textSize="25sp"
+
+            />
+
+
+        <LinearLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            tools:text="roll number 12" />
+            android:layout_gravity="top"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_std_list_li_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:fontFamily="sans-serif-condensed-light"
+                android:maxLines="1"
+                android:padding="2dp"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                tools:text="Ashir Mehmood" />
+
+            <TextView
+                android:id="@+id/tv_history_li_message"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:fontFamily="sans-serif-condensed-light"
+                android:maxLines="1"
+                android:padding="2dp"
+                android:text="BS (Batch 18)"
+                android:textColor="@color/textColorConversationListItemDetail"
+                android:textSize="14sp"
+                tools:text="BS (Batch 18)" />
+
+
+        </LinearLayout>
+
+        <CheckBox
+            android:id="@+id/cb_std_list_li"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:clickable="false"
+            android:visibility="gone" />
+
     </LinearLayout>
-
-    <CheckBox
-        android:id="@+id/cb_std_list_li"
-        android:clickable="false"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center" />
-
-
-</LinearLayout>
+</RelativeLayout>

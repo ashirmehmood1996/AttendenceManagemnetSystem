@@ -4,50 +4,81 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#eaeaea"
     android:orientation="vertical"
     android:padding="16dp"
     tools:context=".Activities.AttendenceActivity">
 
-    <TextView
-        android:id="@+id/tv_attendence_title"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="8dp"
-        android:textSize="16sp"
-        tools:text="Semester 1" />
+        android:layout_centerInParent="true"
+        android:background="@drawable/bg_containers"
+        android:orientation="vertical"
+        android:padding="16dp">
 
-    <TextView
-        android:id="@+id/tv_attendence_session"
+        <TextView
+            android:id="@+id/tv_attendence_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="8dp"
+            android:textColor="@color/textColorConversationListItemTitle"
+            android:textSize="16sp"
+            tools:text="Semester 1" />
+
+        <TextView
+            android:id="@+id/tv_attendence_session"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="8dp"
+            android:textColor="@color/textColorConversationListItemTitle"
+            android:textSize="16sp"
+            tools:text="Session batch 18" />
+
+        <TextView
+            android:id="@+id/tv_attendence_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="8dp"
+            android:textSize="16sp"
+            tools:text="1 jun 2019" />
+    </LinearLayout>
+
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="8dp"
-        android:textSize="16sp"
-        tools:text="Session batch 18" />
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/bg_containers"
+        android:orientation="vertical"
+        android:padding="16dp">
 
-    <TextView
-        android:id="@+id/tv_attendence_date"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="8dp"
-        android:textSize="16sp"
-        tools:text="1 jun 2019" />
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_attendence_std_list"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:layout_weight="1" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_attendence_std_list"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="8dp"
-        android:layout_weight="1" />
-
-    <Button
-        android:id="@+id/bt_attendence_submit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="6dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
-        android:text="submit" />
-
+        <Button
+            android:id="@+id/bt_attendence_submit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="32dp"
+            android:textColor="#ffffff"
+            android:layout_marginRight="32dp"
+            android:background="@drawable/bg_button_solid"
+            android:text="submit" />
+    </LinearLayout>
 </LinearLayout>

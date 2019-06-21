@@ -40,6 +40,8 @@ public class TeacherActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher);
 
+        getSupportActionBar().setTitle("Teacher..");
+
         takeAttendenceButton = findViewById(R.id.bt_teacher_take_attendence);
         setSpinner();
 
@@ -146,3 +148,12 @@ public class TeacherActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 }
+
+// TODO: 6/18/2019  now
+//  tweek the database so that each admin has its users in its own node in firebase and also assiciate the subject in the student teacher relation
+//  add more fields to the firebase so that app can be used in real institutions
+//  polish the UI in colouring , specially attendecne taking park HINT: get help from the school managemnet app
+
+
+
+

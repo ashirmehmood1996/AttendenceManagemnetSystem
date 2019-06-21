@@ -37,6 +37,8 @@ public class AttendanceHistoryActivity extends AppCompatActivity implements View
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_attendance_history);
+        getSupportActionBar().setTitle("History");
+
         initFields();
         setDefaultDate();
         loadClassesAndAddToSpinner();
@@ -161,6 +163,10 @@ public class AttendanceHistoryActivity extends AppCompatActivity implements View
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                         if (dataSnapshot.exists()) {
+                            //it is to clean any data that was fetched previously excluding headings
+                            if (tableLayout.getChildCount()>1){ // TODO: 6/19/2019 test this  later
+                                tableLayout.removeViews(1,tableLayout.getChildCount()-1);
+                            }
 
 
                             StringBuilder builder = new StringBuilder();
@@ -191,5 +197,7 @@ public class AttendanceHistoryActivity extends AppCompatActivity implements View
 
 
     }
+
     //todo after that provide an option to export it to an exel sheet
+    //todo make UI touch responsive
 }

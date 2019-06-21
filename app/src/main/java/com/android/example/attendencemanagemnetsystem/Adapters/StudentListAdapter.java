@@ -44,7 +44,7 @@ public class StudentListAdapter extends RecyclerView.Adapter<StudentListAdapter.
         String rollnumber = currentStudent.getRollNumber();
 
         studentHolder.nameTextView.setText(name);
-        studentHolder.rollNumTextView.setText("roll number " + rollnumber);
+        studentHolder.rollNumTextView.setText(rollnumber);
 
         if (StudentsListActivty.isInActonMode) {
             studentHolder.checkBox.setVisibility(View.VISIBLE);
@@ -53,6 +53,7 @@ public class StudentListAdapter extends RecyclerView.Adapter<StudentListAdapter.
         } else {
             studentHolder.checkBox.setVisibility(View.GONE);
         }
+
         studentHolder.containerLinearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

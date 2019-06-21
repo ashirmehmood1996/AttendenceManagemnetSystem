@@ -34,6 +34,8 @@ public class ClassesListActivity extends AppCompatActivity implements ClassItemC
 
         getSupportActionBar().setTitle("Classes");
 
+        getSupportActionBar().setTitle("Classes");
+
         initFields();
         attachListeners();
 

@@ -1,25 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
+    android:clickable="true"
+    android:focusable="true"
     android:padding="16dp">
+
+    <View
+        android:id="@+id/v_teacher_list_li"
+        android:layout_width="match_parent"
+        android:layout_height=".3dp"
+        android:layout_below="@id/ll_teacher_list_li_container"
+        android:layout_marginStart="82dp"
+        android:layout_marginLeft="82dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@color/textColorConversationListItemDetail" />
+
 
     <LinearLayout
         android:id="@+id/ll_teacher_list_li_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="8dp"
+            android:background="@drawable/magnitude_circle"
+            android:fontFamily="sans-serif-condensed-light"
+            android:gravity="center"
+            android:maxLength="1"
+            android:text="T"
+            android:textColor="@android:color/white"
+            android:textSize="25sp"
+
+
+            />
 
 
         <TextView
             android:id="@+id/tv_teacher_list_li_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_weight="1"
+            android:layout_marginLeft="8dp"
             android:textSize="18sp"
-            tools:text="Salman Khan" />
+            android:textColor="@color/textColorConversationListItemTitle"
+            android:fontFamily="sans-serif-condensed-light"
+            tools:text="Salman Khan"
+            android:layout_marginStart="8dp" />
 
         <CheckBox
             android:id="@+id/cb_teacher_list_li_checkbox"
@@ -29,4 +64,6 @@
             android:clickable="false"
             android:visibility="gone" />
     </LinearLayout>
-</LinearLayout>
+
+
+</RelativeLayout>

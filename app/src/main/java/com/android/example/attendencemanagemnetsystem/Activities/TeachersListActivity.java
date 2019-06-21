@@ -47,6 +47,8 @@ public class TeachersListActivity extends AppCompatActivity implements ActionMod
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teachers_list);
+        getSupportActionBar().setTitle("Teachers");
+
         initFields();
 
         loadTeachers();
@@ -241,4 +243,5 @@ public class TeachersListActivity extends AppCompatActivity implements ActionMod
         super.onActionModeFinished(mode);
         onBackPressed(); //// TODO: 5/31/2019  late handle it more professionaly
     }
+
 }

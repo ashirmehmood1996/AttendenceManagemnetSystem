@@ -44,6 +44,9 @@ public class AttendenceActivity extends AppCompatActivity implements StudentItem
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_attendence);
 
+        getSupportActionBar().setTitle("Attendance");
+
+
         initFields();
         classModel = getIntent().getParcelableExtra("class");
         setAndLoadInitialValues();

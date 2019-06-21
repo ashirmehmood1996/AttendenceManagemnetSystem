@@ -1,95 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:background="#efefef"
-    android:gravity="center"
-    android:orientation="vertical"
-    android:padding="8dp"
-    tools:context=".Activities.AdminActivity">
+
+    android:layout_height="match_parent">
 
     <TextView
+        android:id="@+id/id"
+
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="200dp"
         android:layout_gravity="center"
-        android:gravity="center"
+        android:background="@drawable/bg_admin_panel"
+        android:gravity="center_horizontal"
+        android:paddingTop="30dp"
+        android:textSize="30sp"
+        android:textColor="#ffffff"
+        android:layout_alignParentTop="true"
         android:text=" admin panel" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/bt_admin_classes"
-            android:layout_width="0dp"
+        android:layout_marginTop="100dp"
+        android:layout_alignTop="@id/id"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="8dp"
+        tools:context=".Activities.AdminActivity">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:layout_weight="1"
-            android:background="@drawable/bt_generel_background"
-            android:drawableTop="@drawable/ic_list_black_24dp"
-            android:drawablePadding="8dp"
-            android:paddingTop="50dp"
-            android:paddingBottom="50dp"
-            android:text="Classes"
-            android:textSize="20sp" />
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/bt_admin_teachers"
-            android:layout_width="0dp"
+            <Button
+                android:id="@+id/bt_admin_classes"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/bt_generel_background"
+                android:drawableTop="@drawable/ic_list_black_24dp"
+                android:drawablePadding="8dp"
+                android:paddingTop="40dp"
+                android:paddingBottom="40dp"
+                android:text="Classes"
+                android:textSize="20sp"/>
+
+            <Button
+                android:id="@+id/bt_admin_teachers"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/bt_generel_background"
+                android:drawableTop="@drawable/ic_account_box_black_24dp"
+                android:drawablePadding="8dp"
+                android:paddingTop="40dp"
+                android:paddingBottom="40dp"
+                android:text="Teachers"
+
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:layout_weight="1"
-            android:background="@drawable/bt_generel_background"
-            android:drawableTop="@drawable/ic_account_box_black_24dp"
-            android:drawablePadding="8dp"
-            android:paddingTop="50dp"
-            android:paddingBottom="50dp"
-            android:text="Teachers"
+            android:orientation="horizontal">
 
-            android:textSize="20sp" />
+            <Button
+                android:id="@+id/bt_admin_students"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/bt_generel_background"
+                android:drawableTop="@drawable/ic_people_black_24dp"
+                android:drawablePadding="8dp"
+                android:paddingTop="40dp"
+                android:paddingBottom="40dp"
+                android:text="Students"
+                android:textSize="20sp" />
 
+            <Button
+                android:id="@+id/bt_admin_attendence_history"
+                android:layout_width="0dp"
+
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/bt_generel_background"
+                android:drawableTop="@drawable/ic_history_black_24dp"
+                android:drawablePadding="8dp"
+                android:paddingTop="40dp"
+                android:paddingBottom="40dp"
+                android:text="history"
+                android:textSize="20sp" />
+
+        </LinearLayout>
     </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/bt_admin_students"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:layout_weight="1"
-            android:background="@drawable/bt_generel_background"
-            android:drawableTop="@drawable/ic_people_black_24dp"
-            android:drawablePadding="8dp"
-            android:paddingTop="50dp"
-            android:paddingBottom="50dp"
-            android:text="Students"
-
-            android:textSize="20sp" />
-
-        <Button
-            android:id="@+id/bt_admin_attendence_history"
-            android:layout_width="0dp"
-
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:layout_weight="1"
-            android:background="@drawable/bt_generel_background"
-            android:drawableTop="@drawable/ic_history_black_24dp"
-            android:drawablePadding="8dp"
-            android:paddingTop="50dp"
-            android:paddingBottom="50dp"
-            android:text="history"
-            android:textSize="20sp" />
-
-
-    </LinearLayout>
-
-
-</LinearLayout>
+</RelativeLayout>
