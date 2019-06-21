@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.android.example.attendencemanagemnetsystem.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
@@ -53,6 +54,7 @@ public class AddClassActivity extends AppCompatActivity {
                     classMap.put("title",title);
                     classMap.put("session",session);
                     FirebaseDatabase.getInstance().getReference()
+                            .child("circles").child(FirebaseAuth.getInstance().getCurrentUser().getUid())//as admins user id is circle code
                             .child("classes").push()
                             .setValue(classMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
