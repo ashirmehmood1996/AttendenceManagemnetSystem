@@ -1,6 +1,7 @@
 package com.android.example.attendencemanagemnetsystem.Activities;
 
 import android.content.Intent;
+import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -20,10 +21,12 @@ import com.android.example.attendencemanagemnetsystem.Adapters.TeachersListAdapt
 import com.android.example.attendencemanagemnetsystem.Interfaces.TeacherItemCallbacks;
 import com.android.example.attendencemanagemnetsystem.Models.TeacherModel;
 import com.android.example.attendencemanagemnetsystem.R;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.function.ToDoubleBiFunction;
@@ -82,30 +85,24 @@ public class TeachersListActivity extends AppCompatActivity implements ActionMod
     }
 
     private void loadTeachers() {
-        // TODO: 5/24/2019 load teachers from users where teacher is type
-        FirebaseDatabase.getInstance().getReference().child("users")
-                .orderByChild("type").equalTo("teacher").addChildEventListener(new ChildEventListener() {
+
+        FirebaseDatabase.getInstance().getReference()
+                .child("circles").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .child("teachers").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                String number = dataSnapshot.child("number").getValue(String.class);
-                String teacher_id = dataSnapshot.getKey();
-                teachersArrayList.add(new TeacherModel(teacher_id, number));
-                teachersListAdapter.notifyDataSetChanged();
-            }
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    for (DataSnapshot teacherId : dataSnapshot.getChildren()) {
+                        String curruntTeacherID = dataSnapshot.getKey();
+                        String number = teacherId.getValue(String.class);
+                        teachersArrayList.add(new TeacherModel(curruntTeacherID, number));
+                    }
+                    teachersListAdapter.notifyDataSetChanged();
 
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
+                } else {
+                    Toast.makeText(TeachersListActivity.this, "no teachers were registered", Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
@@ -113,6 +110,7 @@ public class TeachersListActivity extends AppCompatActivity implements ActionMod
 
             }
         });
+
     }
 
 
@@ -183,7 +181,7 @@ public class TeachersListActivity extends AppCompatActivity implements ActionMod
 
                 teachersListAdapter.notifyDataSetChanged();
                 break;
-            case  R.id.nav_teachers_action_mode_search:
+            case R.id.nav_teachers_action_mode_search:
                 Toast.makeText(this, "implement later", Toast.LENGTH_SHORT).show();
                 break;
         }

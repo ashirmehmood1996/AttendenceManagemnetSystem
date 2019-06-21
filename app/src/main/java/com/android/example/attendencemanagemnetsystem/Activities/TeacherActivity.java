@@ -7,10 +7,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,17 +42,12 @@ public class TeacherActivity extends AppCompatActivity {
         fetchCircleCode();
 
         getSupportActionBar().setTitle("Teacher..");
-
         takeAttendenceButton = findViewById(R.id.bt_teacher_take_attendence);
-
-
         //display time
         long time = Calendar.getInstance().getTimeInMillis();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd MM yyyy");
         String date = simpleDateFormat.format(time);
         ((TextView) findViewById(R.id.tv_teacher_date)).setText(date);
-
-
         setAttendenceButton();
 
 
@@ -145,10 +138,7 @@ public class TeacherActivity extends AppCompatActivity {
                             Toast.makeText(TeacherActivity.this, "classes loaded successfully", Toast.LENGTH_SHORT).show();
                             takeAttendenceButton.setEnabled(true);
                         }
-
                         // TODO: 6/1/2019 add loading screen
-
-
                     }
 
                     @Override
@@ -156,10 +146,7 @@ public class TeacherActivity extends AppCompatActivity {
 
                     }
                 });
-
-
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
