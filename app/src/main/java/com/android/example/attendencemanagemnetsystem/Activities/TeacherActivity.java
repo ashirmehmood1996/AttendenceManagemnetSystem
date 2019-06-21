@@ -33,6 +33,7 @@ import java.util.Calendar;
 public class TeacherActivity extends AppCompatActivity {
     private Spinner classesSpinner;
     private Button takeAttendenceButton;
+    private String circleCode;
 
 
     @Override
@@ -40,10 +41,11 @@ public class TeacherActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher);
 
+        fetchCircleCode();
+
         getSupportActionBar().setTitle("Teacher..");
 
         takeAttendenceButton = findViewById(R.id.bt_teacher_take_attendence);
-        setSpinner();
 
 
         //display time
@@ -58,15 +60,41 @@ public class TeacherActivity extends AppCompatActivity {
 
     }
 
+    private void fetchCircleCode() {
+        FirebaseDatabase.getInstance().getReference().child("users")
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .child("circle_code")
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.exists()) {
+                            circleCode = dataSnapshot.getValue(String.class);
+                            setSpinner();
+                        } else {
+                            Toast.makeText(TeacherActivity.this, "failded to fetch circle code", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+    }
+
     private void setAttendenceButton() {
 
         takeAttendenceButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                if (circleCode == null || circleCode.isEmpty()) {
+                    Toast.makeText(TeacherActivity.this, "circle code was not fetched please try again in few seconds", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 ClassModel classModel = (ClassModel) classesSpinner.getSelectedItem();
                 Intent intent = new Intent(TeacherActivity.this, AttendenceActivity.class);
                 intent.putExtra("class", classModel);
+                intent.putExtra("circle_code", circleCode);
                 startActivity(intent);
             }
         });
@@ -79,8 +107,15 @@ public class TeacherActivity extends AppCompatActivity {
     }
 
     private void loadClassesAndAddToSpinner() {
+
+        if (circleCode == null || circleCode.isEmpty()) {
+            Toast.makeText(TeacherActivity.this, "circle code was not fetched please try again in few seconds", Toast.LENGTH_SHORT).show();
+            return;
+        }
 // TODO: 6/1/2019 later query this if possible for now getting all teachers
-        FirebaseDatabase.getInstance().getReference().child("classes")
+        FirebaseDatabase.getInstance().getReference()
+                .child("circles").child(circleCode)
+                .child("classes")
                 /*.orderByChild("teachers/" + FirebaseAuth.getInstance().getCurrentUser().getUid())*//*.equalTo(FirebaseAuth.getInstance().getCurrentUser().getUid())*/
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -96,13 +131,21 @@ public class TeacherActivity extends AppCompatActivity {
                                 classesArray.add(new ClassModel(classId, title, classSession));
                             }
                         }
+
                         ClassesSpinnerAdapter classesSpinnerAdapter = new ClassesSpinnerAdapter(TeacherActivity.this, classesArray);
 
 //                        ArrayAdapter spinnerAdapter = new ArrayAdapter<>(TeacherActivity.this, android.R.layout.simple_spinner_item, classesArray);
 //                        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 //                        classesSpinner.setAdapter(spinnerAdapter);
                         classesSpinner.setAdapter(classesSpinnerAdapter);
-                        takeAttendenceButton.setEnabled(true);
+                        if (classesArray.isEmpty()) {
+                            Toast.makeText(TeacherActivity.this, "you are not assigned any classes by the admin", Toast.LENGTH_SHORT).show();
+
+                        } else {
+                            Toast.makeText(TeacherActivity.this, "classes loaded successfully", Toast.LENGTH_SHORT).show();
+                            takeAttendenceButton.setEnabled(true);
+                        }
+
                         // TODO: 6/1/2019 add loading screen
 
 
@@ -150,7 +193,7 @@ public class TeacherActivity extends AppCompatActivity {
 }
 
 // TODO: 6/18/2019  now
-//  tweek the database so that each admin has its users in its own node in firebase and also assiciate the subject in the student teacher relation
+//   assiciate the subject in the student teacher relation
 //  add more fields to the firebase so that app can be used in real institutions
 //  polish the UI in colouring , specially attendecne taking park HINT: get help from the school managemnet app
 

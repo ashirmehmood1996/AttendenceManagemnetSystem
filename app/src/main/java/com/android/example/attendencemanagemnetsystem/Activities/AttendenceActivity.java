@@ -35,6 +35,7 @@ public class AttendenceActivity extends AppCompatActivity implements StudentItem
     private ArrayList<StudentModel> studentModelArrayList;
     private AttendenceAdapter attendenceAdapter;
     private Button submitButton;
+    private String circleCode;
 
     private ClassModel classModel;
 
@@ -68,7 +69,10 @@ public class AttendenceActivity extends AppCompatActivity implements StudentItem
     }
 
     private void loadStudents(String classId) {
-        FirebaseDatabase.getInstance().getReference().child("classes")
+
+        FirebaseDatabase.getInstance().getReference()
+                .child("circles").child(circleCode)//as admins user id is circle code
+                .child("classes")
                 .child(classId).child("students")
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -97,7 +101,9 @@ public class AttendenceActivity extends AppCompatActivity implements StudentItem
 
     private void loadChildrens(ArrayList<String> childIdsList) {
         for (String childId : childIdsList) {
-            FirebaseDatabase.getInstance().getReference().child("students")
+            FirebaseDatabase.getInstance().getReference()
+                    .child("circles").child(circleCode)//as admins user id is circle code
+                    .child("students")
                     .child(childId).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -124,6 +130,7 @@ public class AttendenceActivity extends AppCompatActivity implements StudentItem
     }
 
     private void initFields() {
+        circleCode = getIntent().getStringExtra("circle_code");
         titleTextView = findViewById(R.id.tv_attendence_title);
         sessionTextView = findViewById(R.id.tv_attendence_session);
         dateTextView = findViewById(R.id.tv_attendence_date);
@@ -174,9 +181,11 @@ public class AttendenceActivity extends AppCompatActivity implements StudentItem
 
 
         //// TODO: 6/2/2019  later make it dynamic and each organization has uts record separate from others
-        Calendar calendar= Calendar.getInstance();
+        Calendar calendar = Calendar.getInstance();
         setTimetoStartOfDay(calendar);//saving time in date only string to be able to retrive easily
-        FirebaseDatabase.getInstance().getReference().child("attendances")
+        FirebaseDatabase.getInstance().getReference()
+                .child("circles").child(circleCode)//as admins user id is circle code
+                .child("attendances")
                 .child(classModel.getClassId()).child(calendar.getTimeInMillis() + "").setValue(attendanceMap).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
@@ -186,11 +195,12 @@ public class AttendenceActivity extends AppCompatActivity implements StudentItem
         });
 
     }
+
     private void setTimetoStartOfDay(Calendar calendar) {
-        calendar.set(Calendar.HOUR_OF_DAY,0);
-        calendar.set(Calendar.MINUTE,0);
-        calendar.set(Calendar.SECOND,0);
-        calendar.set(Calendar.MILLISECOND,0);
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
     }
 
     @Override

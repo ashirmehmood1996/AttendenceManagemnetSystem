@@ -14,6 +14,7 @@ import com.android.example.attendencemanagemnetsystem.Adapters.ClassesAdapter;
 import com.android.example.attendencemanagemnetsystem.Interfaces.ClassItemCallbacks;
 import com.android.example.attendencemanagemnetsystem.Models.ClassModel;
 import com.android.example.attendencemanagemnetsystem.R;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -74,6 +75,7 @@ public class ClassesListActivity extends AppCompatActivity implements ClassItemC
         if (classesArrayList.size() > 0)
             classesArrayList.clear();
         FirebaseDatabase.getInstance().getReference()
+                .child("circles").child(FirebaseAuth.getInstance().getCurrentUser().getUid())//as admins user id is circle code
                 .child("classes").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {

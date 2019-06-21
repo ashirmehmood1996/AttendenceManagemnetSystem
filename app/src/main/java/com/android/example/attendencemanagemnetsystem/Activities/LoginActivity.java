@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.telephony.PhoneNumberUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -50,9 +51,14 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!numberEditText.getText().toString().isEmpty()) {
-                    //// TODO: 5/24/2019 later check that if this account exists in database
-                    proceedToLogin();
+                String num = numberEditText.getText().toString();
+                if (!num.isEmpty()) {
+                    if (PhoneNumberUtils.isGlobalPhoneNumber(numberEditText.getText().toString())) {
+                        checkAvailabilityOfNumberAndLogin(num);
+                    } else {
+                        Toast.makeText(LoginActivity.this, "please provide a valid global number", Toast.LENGTH_SHORT).show();
+                    }
+
                 } else {
                     Toast.makeText(LoginActivity.this, "please provide a number", Toast.LENGTH_SHORT).show();
                 }
@@ -64,6 +70,27 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
                 //LoginActivity.this.finish();
+            }
+        });
+    }
+
+    private void checkAvailabilityOfNumberAndLogin(String numebr) {
+        FirebaseDatabase.getInstance().getReference().child("users")
+                .orderByChild("number").equalTo(numebr).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    proceedToLogin();
+
+                } else {
+                    Toast.makeText(LoginActivity.this, "this number is not registered", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
             }
         });
     }

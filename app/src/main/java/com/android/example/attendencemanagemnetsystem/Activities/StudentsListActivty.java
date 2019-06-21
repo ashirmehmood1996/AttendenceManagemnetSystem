@@ -27,6 +27,7 @@ import com.android.example.attendencemanagemnetsystem.Models.StudentModel;
 import com.android.example.attendencemanagemnetsystem.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -125,8 +126,9 @@ public class StudentsListActivty extends AppCompatActivity implements ActionMode
                         HashMap<String, Object> studentMap = new HashMap<>();
                         studentMap.put("name", name);
                         studentMap.put("roll_num", rollNum);
-                        FirebaseDatabase.getInstance().getReference().child("students")
-
+                        FirebaseDatabase.getInstance().getReference()
+                                .child("circles").child(FirebaseAuth.getInstance().getCurrentUser().getUid())//as admins user id is circle code
+                                .child("students")
                                 .push().setValue(studentMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
@@ -145,7 +147,9 @@ public class StudentsListActivty extends AppCompatActivity implements ActionMode
     }
 
     private void loadStudents() {
-        FirebaseDatabase.getInstance().getReference().child("students")
+        FirebaseDatabase.getInstance().getReference()
+                .child("circles").child(FirebaseAuth.getInstance().getCurrentUser().getUid())//as admins user id is circle code
+                .child("students")
                 .addChildEventListener(new ChildEventListener() {
                     @Override
                     public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {

@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.android.example.attendencemanagemnetsystem.Adapters.ClassesSpinnerAdapter;
 import com.android.example.attendencemanagemnetsystem.Models.ClassModel;
 import com.android.example.attendencemanagemnetsystem.R;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -63,7 +64,9 @@ public class AttendanceHistoryActivity extends AppCompatActivity implements View
 
     private void loadClassesAndAddToSpinner() {
 // TODO: 6/1/2019 later query this if possible for now getting all teachers
-        FirebaseDatabase.getInstance().getReference().child("classes")
+        FirebaseDatabase.getInstance().getReference()
+                .child("circles").child(FirebaseAuth.getInstance().getCurrentUser().getUid())//as admins user id is circle code
+                .child("classes")
                 /*.orderByChild("teachers/" + FirebaseAuth.getInstance().getCurrentUser().getUid())*//*.equalTo(FirebaseAuth.getInstance().getCurrentUser().getUid())*/
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -156,7 +159,9 @@ public class AttendanceHistoryActivity extends AppCompatActivity implements View
         // TODO: 6/2/2019  empty all the zeros at the end may be at string and retriving both t make a query that can take attendence of a single day
 
         String classId = ((ClassModel) classSpinner.getSelectedItem()).getClassId();
-        FirebaseDatabase.getInstance().getReference().child("attendances")
+        FirebaseDatabase.getInstance().getReference()
+                .child("circles").child(FirebaseAuth.getInstance().getCurrentUser().getUid())//as admins user id is circle code
+                .child("attendances")
                 .child(classId).child(selectedTimeInMilliSeconds + "")
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override

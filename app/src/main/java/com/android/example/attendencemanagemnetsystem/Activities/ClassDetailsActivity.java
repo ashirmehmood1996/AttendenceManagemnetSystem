@@ -15,6 +15,7 @@ import com.android.example.attendencemanagemnetsystem.Models.TeacherModel;
 import com.android.example.attendencemanagemnetsystem.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -110,6 +111,7 @@ public class ClassDetailsActivity extends AppCompatActivity implements View.OnCl
             studentsMAp.put(currentStudent.getStudentId(), currentStudent.getName());
         }
         FirebaseDatabase.getInstance().getReference()
+                .child("circles").child(FirebaseAuth.getInstance().getCurrentUser().getUid())//as admins user id is circle code
                 .child("classes").child(getIntent().getStringExtra("classId"))
                 .child("students").updateChildren(studentsMAp).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
@@ -129,6 +131,7 @@ public class ClassDetailsActivity extends AppCompatActivity implements View.OnCl
             teachersMap.put(currentTeacher.getTeacher_id(), currentTeacher.getTeacherName());
         }
         FirebaseDatabase.getInstance().getReference()
+                .child("circles").child(FirebaseAuth.getInstance().getCurrentUser().getUid())//as admins user id is circle code
                 .child("classes").child(getIntent().getStringExtra("classId"))
                 .child("teachers").updateChildren(teachersMap).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
@@ -158,7 +161,9 @@ public class ClassDetailsActivity extends AppCompatActivity implements View.OnCl
 
 
     private void loadTeachers(String classId) {
-        FirebaseDatabase.getInstance().getReference()
+        FirebaseDatabase.getInstance()
+                .getReference()
+                .child("circles").child(FirebaseAuth.getInstance().getCurrentUser().getUid())//as admins user id is circle code
                 .child("classes").child(classId)
                 .child("teachers").addValueEventListener(new ValueEventListener() {
             @Override
@@ -183,6 +188,7 @@ public class ClassDetailsActivity extends AppCompatActivity implements View.OnCl
 
     private void loadStudents(String classId) {
         FirebaseDatabase.getInstance().getReference()
+                .child("circles").child(FirebaseAuth.getInstance().getCurrentUser().getUid())//as admins user id is circle code
                 .child("classes").child(classId)
                 .child("students").addValueEventListener(new ValueEventListener() {
             @Override
