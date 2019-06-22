@@ -233,7 +233,7 @@ public class StudentsListActivty extends AppCompatActivity implements ActionMode
     @Override
     public boolean onActionItemClicked(ActionMode mode, final MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.nav_teachers_action_mode_select_all:
+            case R.id.nav_std_list_action_mode_select_all:
                 for (StudentModel currentStudent : studentArrayList) {
                     currentStudent.setSelected(false);
                 }
@@ -292,11 +292,6 @@ public class StudentsListActivty extends AppCompatActivity implements ActionMode
 
     }
 
-    public void updateCounterUI() {
-        if (mActionMode != null)
-
-            mActionMode.setTitle(totalSelectedCount + " Selected");
-    }
 
     @Override
     public void onStudentClicked(int position) {
@@ -315,6 +310,12 @@ public class StudentsListActivty extends AppCompatActivity implements ActionMode
 
         }
         updateCounterUI();
+    }
+
+    public void updateCounterUI() {
+        if (mActionMode != null)
+
+            mActionMode.setTitle(totalSelectedCount + " Selected");
     }
 
     @Override

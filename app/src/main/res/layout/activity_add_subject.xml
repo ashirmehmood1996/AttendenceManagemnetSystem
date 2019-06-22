@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#e0e0e0"
+    android:padding="16dp"
+    tools:context=".Activities.AddSubjectActivity">
+
+    <TextView
+        android:id="@+id/tv_add_subject_total_count"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/ll_inner_container"
+        android:layout_marginBottom="4dp"
+        android:background="@drawable/bg_containers"
+        android:fontFamily="sans-serif-condensed-light"
+        android:padding="16dp"
+        android:text=" 0 Subejcts Added"
+        android:textColor="@color/textColorConversationListItemTitle"
+        android:textSize="18sp" />
+
+    <LinearLayout
+        android:id="@+id/ll_inner_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@drawable/bg_containers"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="10dp"
+            android:paddingBottom="20dp">
+
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="subject title"
+                android:textColor="@color/textColorConversationListItemTitle" />
+
+            <EditText
+                android:id="@+id/et_add_subject_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_edit_text_round"
+                android:hint="Algrithms and Design"
+                android:imeOptions="actionNext"
+                android:padding="16dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="10dp"
+            android:paddingBottom="20dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="subject id"
+                android:textColor="@color/textColorConversationListItemTitle" />
+
+            <EditText
+                android:id="@+id/et_add_subject_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_edit_text_round"
+                android:hint="CS 01"
+                android:imeOptions="actionDone"
+                android:padding="16dp" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/bt_add_subject_more"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/bg_button_solid"
+            android:text="add more"
+            android:textColor="#ffffff" />
+
+        <Button
+            android:id="@+id/bt_add_subject_done"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:background="@drawable/bg_button_solid"
+            android:text="Done"
+            android:textColor="#ffffff" />
+
+    </LinearLayout>
+</RelativeLayout>

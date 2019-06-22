@@ -1,8 +1,10 @@
 package com.android.example.attendencemanagemnetsystem.Activities;
 
 import android.content.Intent;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -80,11 +82,19 @@ public class ClassDetailsActivity extends AppCompatActivity implements View.OnCl
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (requestCode == RC_SELECT_TEACHERS) {
             if (resultCode == RESULT_OK) {
-                ArrayList<TeacherModel> selectedTeachersList = data.getParcelableArrayListExtra("selected_teachers");
-                if (selectedTeachersList.size() == 0)
-                    Toast.makeText(this, "No teacher was selected", Toast.LENGTH_SHORT).show();
-                else
-                    addTeachersToClass(selectedTeachersList);
+
+
+                TeacherModel teacherModel = data.getParcelableExtra("selected_teachers");
+                if (teacherModel == null) {
+                    Toast.makeText(this, "Problem in getting teacher data", Toast.LENGTH_SHORT).show();
+                } else
+                    showDialogToAssignSubjects(teacherModel);
+
+//                ArrayList<TeacherModel> selectedTeachersList = data.getParcelableArrayListExtra("selected_teachers");
+//                if (selectedTeachersList.size() == 0)
+//                    Toast.makeText(this, "No teacher was selected", Toast.LENGTH_SHORT).show();
+//                else
+//                    addTeachersToClass(selectedTeachersList);
 
             } else {
                 Toast.makeText(this, "teacher selection was cancelled", Toast.LENGTH_SHORT).show();
@@ -102,6 +112,13 @@ public class ClassDetailsActivity extends AppCompatActivity implements View.OnCl
             }
         }
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    private void showDialogToAssignSubjects(TeacherModel teacherModel) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+
+        addTeachersToClass(teacherModel);
     }
 
 
@@ -125,11 +142,13 @@ public class ClassDetailsActivity extends AppCompatActivity implements View.OnCl
 
     }
 
-    private void addTeachersToClass(final ArrayList<TeacherModel> selectedTeachersList) { //note duplicate teachers wont be added automatically as the new duplicated will override the old one
+    private void addTeachersToClass(TeacherModel teacherModel /*final ArrayList<TeacherModel> selectedTeachersList*/) { //note duplicate teachers wont be added automatically as the new duplicated will override the old one
         HashMap<String, Object> teachersMap = new HashMap<>();
-        for (TeacherModel currentTeacher : selectedTeachersList) {
+        teachersMap.put(teacherModel.getTeacher_id(), teacherModel.getTeacherName());
+        Toast.makeText(this, "teaher id is : " + teacherModel.getTeacher_id(), Toast.LENGTH_SHORT).show();
+        /*for (TeacherModel currentTeacher : selectedTeachersList) {
             teachersMap.put(currentTeacher.getTeacher_id(), currentTeacher.getTeacherName());
-        }
+        }*/
         FirebaseDatabase.getInstance().getReference()
                 .child("circles").child(FirebaseAuth.getInstance().getCurrentUser().getUid())//as admins user id is circle code
                 .child("classes").child(getIntent().getStringExtra("classId"))
@@ -137,7 +156,7 @@ public class ClassDetailsActivity extends AppCompatActivity implements View.OnCl
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
-                    Toast.makeText(ClassDetailsActivity.this, selectedTeachersList.size() + " teahers added  to database", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ClassDetailsActivity.this, "teacher added  to database successfully", Toast.LENGTH_SHORT).show();
 
                 }
             }
@@ -170,7 +189,7 @@ public class ClassDetailsActivity extends AppCompatActivity implements View.OnCl
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
                     long total = dataSnapshot.getChildrenCount();
-                    String teachers = "total teachers : " + total+"\n";
+                    String teachers = "total teachers : " + total + "\n";
                     for (DataSnapshot teacherSnap : dataSnapshot.getChildren()) {
                         teachers = teachers + "\n" + teacherSnap.getValue(String.class);
 
@@ -195,7 +214,7 @@ public class ClassDetailsActivity extends AppCompatActivity implements View.OnCl
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
                     long total = dataSnapshot.getChildrenCount();
-                    String students = "total Students : " + total+"\n";
+                    String students = "total Students : " + total + "\n";
                     for (DataSnapshot teacherSnap : dataSnapshot.getChildren()) {
                         students = students + "\n" + teacherSnap.getValue(String.class);
                     }

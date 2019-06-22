@@ -41,7 +41,7 @@ public class TeachersListAdapter extends RecyclerView.Adapter<TeachersListAdapte
         String name = teacherModel.getTeacherName();
         teacherHolder.nameTextView.setText(name);
 
-        if (TeachersListActivity.isInActonMode) {
+        if (TeachersListActivity.isInSelectMode) { //no need for now but keep it
             teacherHolder.checkBox.setVisibility(View.VISIBLE);
             if (teacherModel.isSelected()) teacherHolder.checkBox.setChecked(true);
             else teacherHolder.checkBox.setChecked(false);
