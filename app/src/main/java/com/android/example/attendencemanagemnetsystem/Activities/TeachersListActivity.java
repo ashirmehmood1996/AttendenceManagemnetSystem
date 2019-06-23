@@ -32,6 +32,7 @@ import java.util.ArrayList;
 import java.util.function.ToDoubleBiFunction;
 
 public class TeachersListActivity extends AppCompatActivity implements /*ActionMode.Callback,*/ TeacherItemCallbacks {
+    private static final int RC_ADD_SUBJECTS = 121;
     private RecyclerView recyclerView;
     private TeachersListAdapter teachersListAdapter;
     private ArrayList<TeacherModel> teachersArrayList;
@@ -217,13 +218,27 @@ public class TeachersListActivity extends AppCompatActivity implements /*ActionM
 
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (requestCode == RC_ADD_SUBJECTS && resultCode == RESULT_OK) {
+            this.setResult(RESULT_OK, data);
+            finish();
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+
+    }
+
+    @Override
     public void onTeacherClciked(int position) {
         TeacherModel teacherModel = teachersArrayList.get(position);
 
-        Intent intent = new Intent();
+
+        Intent intent = new Intent(this, AddSubjectActivity.class);
+        intent.putExtra("teacher", teacherModel);
+        startActivityForResult(intent, RC_ADD_SUBJECTS);
+        /*Intent intent = new Intent();
         intent.putExtra("selected_teachers", teacherModel);
         setResult(RESULT_OK, intent);
-        finish();
+        finish();*/
 
 
 //        TeacherModel teacherModel = teachersArrayList.get(position);

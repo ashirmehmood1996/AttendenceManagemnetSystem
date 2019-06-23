@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.example.attendencemanagemnetsystem.Models.StudentModel;
+import com.android.example.attendencemanagemnetsystem.Models.SubjectModel;
 import com.android.example.attendencemanagemnetsystem.Models.TeacherModel;
 import com.android.example.attendencemanagemnetsystem.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -83,12 +84,13 @@ public class ClassDetailsActivity extends AppCompatActivity implements View.OnCl
         if (requestCode == RC_SELECT_TEACHERS) {
             if (resultCode == RESULT_OK) {
 
-
-                TeacherModel teacherModel = data.getParcelableExtra("selected_teachers");
-                if (teacherModel == null) {
+                /*HashMap<String,Object> teacherSubjectMap = (HashMap<String, Object>) data.getSerializableExtra("teacher_subject_map");*/
+                TeacherModel teacherModel = data.getParcelableExtra("teacher_model");
+                ArrayList<SubjectModel> parcelableArrayList = data.getParcelableArrayListExtra("subjects_list");
+                if (parcelableArrayList == null && teacherModel == null) {
                     Toast.makeText(this, "Problem in getting teacher data", Toast.LENGTH_SHORT).show();
                 } else
-                    showDialogToAssignSubjects(teacherModel);
+                    addTeachersToClass(parcelableArrayList, teacherModel);
 
 //                ArrayList<TeacherModel> selectedTeachersList = data.getParcelableArrayListExtra("selected_teachers");
 //                if (selectedTeachersList.size() == 0)
@@ -114,13 +116,6 @@ public class ClassDetailsActivity extends AppCompatActivity implements View.OnCl
         super.onActivityResult(requestCode, resultCode, data);
     }
 
-    private void showDialogToAssignSubjects(TeacherModel teacherModel) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-
-
-        addTeachersToClass(teacherModel);
-    }
-
 
     private void addStudentsToClass(final ArrayList<StudentModel> studentModelArrayList) { //note duplicate teachers wont be added automatically as the new duplicated will override the old one
         HashMap<String, Object> studentsMAp = new HashMap<>();
@@ -142,17 +137,21 @@ public class ClassDetailsActivity extends AppCompatActivity implements View.OnCl
 
     }
 
-    private void addTeachersToClass(TeacherModel teacherModel /*final ArrayList<TeacherModel> selectedTeachersList*/) { //note duplicate teachers wont be added automatically as the new duplicated will override the old one
-        HashMap<String, Object> teachersMap = new HashMap<>();
-        teachersMap.put(teacherModel.getTeacher_id(), teacherModel.getTeacherName());
-        Toast.makeText(this, "teaher id is : " + teacherModel.getTeacher_id(), Toast.LENGTH_SHORT).show();
-        /*for (TeacherModel currentTeacher : selectedTeachersList) {
-            teachersMap.put(currentTeacher.getTeacher_id(), currentTeacher.getTeacherName());
-        }*/
+    private void addTeachersToClass(ArrayList<SubjectModel> subjectModelArrayList, /*final ArrayList<TeacherModel> selectedTeachersList*/TeacherModel teacherModel) { //note duplicate teachers wont be added automatically as the new duplicated will override the old one
+
+
+        HashMap<String, Object> teacherSubjectsMap = new HashMap<>();
+        teacherSubjectsMap.put("name", teacherModel.getTeacherName());
+        HashMap<String, Object> subjectsMap = new HashMap<>();
+        for (SubjectModel subjectModel : subjectModelArrayList) {
+            subjectsMap.put(subjectModel.getId(), subjectModel.getName());
+        }
+        teacherSubjectsMap.put("subjects", subjectsMap);
+
         FirebaseDatabase.getInstance().getReference()
                 .child("circles").child(FirebaseAuth.getInstance().getCurrentUser().getUid())//as admins user id is circle code
                 .child("classes").child(getIntent().getStringExtra("classId"))
-                .child("teachers").updateChildren(teachersMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                .child("teachers").child(teacherModel.getTeacher_id()).updateChildren(teacherSubjectsMap).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
@@ -191,7 +190,11 @@ public class ClassDetailsActivity extends AppCompatActivity implements View.OnCl
                     long total = dataSnapshot.getChildrenCount();
                     String teachers = "total teachers : " + total + "\n";
                     for (DataSnapshot teacherSnap : dataSnapshot.getChildren()) {
-                        teachers = teachers + "\n" + teacherSnap.getValue(String.class);
+                        teachers = teachers + "\n" + teacherSnap.child("name").getValue(String.class) + " ( ";
+                        for (DataSnapshot subjectsSnap : teacherSnap.child("subjects").getChildren()) {
+                            teachers = teachers + subjectsSnap.getValue(String.class) + ", ";
+                        }
+                        teachers = teachers + " )";
 
                     }
                     teachersListTextView.setText(teachers);

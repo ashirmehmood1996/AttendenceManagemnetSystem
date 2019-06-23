@@ -180,7 +180,6 @@ public class TeacherActivity extends AppCompatActivity {
 }
 
 // TODO: 6/18/2019  now
-//   assiciate the subject in the student teacher relation
 //   export to excel sheet
 //   in attendence history we need to know that which teacher took it and which subject it was
 //  add more fields to the firebase so that app can be used in real institutions
