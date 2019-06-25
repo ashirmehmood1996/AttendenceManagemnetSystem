@@ -6,4 +6,4 @@ How to use this project?
 4)add your PC's sha-1 code to the firebase project (google it).
 5) after that you are good to go.
 #
-In case of any queries or problems you can contact me Thanks
+In case of any queries or problems you can contact me at ashirmehmood1996@gmail.com Thanks
